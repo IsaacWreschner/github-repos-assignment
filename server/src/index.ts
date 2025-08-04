@@ -1,5 +1,6 @@
 import express from 'express';
 import axios from 'axios';
+import cors from 'cors'; 
 import dotenv from 'dotenv';
 import { CacheService } from './cache.service.js';
 import { fetchAllReposFromGitHub } from './fetch.js';
@@ -7,6 +8,8 @@ import type { Repo } from './model/repo.model.js';
 dotenv.config();
 
 const app = express();
+app.use(cors());
+
 const PORT = process.env.PORT || 3000;
 const cacheService = new CacheService();
 

@@ -1,0 +1,23 @@
+<div style="margin-bottom: 16px;">
+    <div appearance="fill">
+      <mat-label>GitHub Organization</mat-label>
+      <input matInput [(ngModel)]="orgName" placeholder="e.g., remix-run" />
+    </div>
+    <button mat-raised-button color="primary" (click)="search()">Search</button>
+  </div>
+  
+  <mat-list *ngIf="repos.length > 0">
+    <mat-list-item *ngFor="let repo of repos">
+      <a [href]="repo.url" target="_blank" rel="noopener">{{ repo.name }}</a>
+      <span *ngIf="repo.private" style="color: red; margin-left: 8px;">(Private)</span>
+    </mat-list-item>
+  </mat-list>
+  
+  <mat-paginator
+    *ngIf="repos.length > 0"
+    [length]="totalCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+  
