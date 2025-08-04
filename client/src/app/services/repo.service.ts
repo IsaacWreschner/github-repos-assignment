@@ -23,6 +23,7 @@ export class RepoService {
   constructor(private http: HttpClient) {}
 
   getRepos(orgName: string, from: number, to: number): Observable<{ repos: Repo[], totalCount: number }> {
+    console.log('--------')
     return this.http.get<{ repos: Repo[], totalCount: number }>(
       `http://localhost:3000/org/${orgName}/repos?from=${from}&to=${to}`
     );
